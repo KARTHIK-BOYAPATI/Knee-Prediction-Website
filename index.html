@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knee Stage Prediction</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #ff8080, #66b3ff);
+            text-align: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .logo img {
+            width: 100px; /* Adjust the width as needed */
+            height: auto;
+            border-radius: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        #file-input {
+            display: block; /* Initially visible */
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .uploaded-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #upload-text {
+            display: none;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        #predict-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="https://res.cloudinary.com/dhoajm4w5/image/upload/v1708597303/Doc_Image_fjwbsp.jpg" alt="Logo">
+    </div>
+    <h1>Upload X-ray Image</h1>
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()" id="upload-form">
+        <label for="file-input" class="custom-file-upload">
+            Choose File
+        </label>
+        <input type="file" name="file" id="file-input" accept=".jpg, .jpeg, .png" style="display:none" onchange="showImage()">
+        <p id="upload-text">Image Uploaded</p>
+        <button type="button" id="predict-btn" onclick="hideUpload()">Predict</button>
+    </form>
+
+    <!-- Display the uploaded image -->
+    <img id="uploaded-image" class="uploaded-image">
+
+    <script>
+        function validateForm() {
+            var fileInput = document.getElementById('file-input');
+            if (fileInput.files.length === 0) {
+                alert('Please choose a file.');
+                return false;
+            }
+            return true;
+        }
+
+        function showImage() {
+            var fileInput = document.getElementById('file-input');
+            var uploadedImage = document.getElementById('uploaded-image');
+            var uploadText = document.getElementById('upload-text');
+            
+            if (fileInput.files.length > 0) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = 'block';
+                    uploadText.style.display = 'block';
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        function hideUpload() {
+            var form = document.getElementById('upload-form');
+            var fileInput = document.getElementById('file-input');
+            var uploadText = document.getElementById('upload-text');
+            var predictBtn = document.getElementById('predict-btn');
+
+            fileInput.style.display = 'none';
+            uploadText.style.display = 'none';
+            predictBtn.style.display = 'none';
+
+            // Submit the form after hiding elements
+            form.submit();
+        }
+    </script>
+</body>
+</html>

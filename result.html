@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knee Stage Prediction Result</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #ff8080, #66b3ff);
+            text-align: center;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .logo img {
+            width: 100px; /* Adjust the width as needed */
+            height: auto;
+            border-radius: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+        }
+        .BackToUpload{
+                font-size: large;
+                font-weight: bold;
+                color: darkblue;
+        }
+        .predictionStage{
+            font-size: large;
+            font-weight: bold;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="https://res.cloudinary.com/dhoajm4w5/image/upload/v1708597303/Doc_Image_fjwbsp.jpg" alt="Logo">
+    </div>
+    <h1>Knee Stage Prediction Result</h1>
+    <p class="predictionStage">Predicted Stage: {{ predicted_label }}</p>
+
+    
+<a class="BackToUpload" href="/">Back to Upload</a>
+    
+</body>
+</html>
